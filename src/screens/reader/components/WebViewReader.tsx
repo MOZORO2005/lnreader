@@ -411,6 +411,7 @@ const WebViewReader: React.FC<WebViewReaderProps> = ({
                     noNextChapter: getString('readerScreen.noNextChapter'),
                     removeText: getString('common.remove'),
                     replaceText: getString('customCodeSettings.replace'),
+                    dictionaryText: 'Dictionary',
                   },
                 })}
               </script>
