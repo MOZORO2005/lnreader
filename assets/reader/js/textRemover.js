@@ -36,6 +36,18 @@ window.textRemover = new (function () {
         },
         reader.strings.replaceText,
       ),
+      button(
+        {
+          type: 'button',
+          onclick: e => {
+            if (reader.hidden.val) {
+              e.stopPropagation();
+            }
+            lookupSelectedText();
+          },
+        },
+        reader.strings.dictionaryText || 'Dictionary',
+      ),
     );
 
     document.body.appendChild(selectionUI);
@@ -152,6 +164,18 @@ window.textRemover = new (function () {
       reader.post({
         type: 'text-action',
         data: { replace: selectedText },
+      });
+    }
+    hideSelectionUI();
+    window.getSelection().removeAllRanges();
+  }
+
+  function lookupSelectedText() {
+    const selectedText = getSelectedText();
+    if (selectedText) {
+      reader.post({
+        type: 'text-action',
+        data: { dictionary: selectedText },
       });
     }
     hideSelectionUI();
